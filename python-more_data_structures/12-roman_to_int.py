@@ -1,14 +1,31 @@
 #!/usr/bin/python3
-# 10-best_score.py
 
-def best_score(a_dictionary):
-    if not isinstance(a_dictionary, dict) or len(a_dictionary) == 0:
-        return None
+def roman_to_int(roman_string):
+    if roman_string is None or not isinstance(roman_string, str):
+        return 0
 
-    ret = list(a_dictionary.keys())[0]
-    big = a_dictionary[ret]
-    for k, v in a_dictionary.items():
-        if v > big:
-            big = v
-            ret = k
-    return (ret)
+    roman_dict = {
+        "I": 1,
+        "V": 5,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000
+    }
+
+    num = 0
+
+    for i in range(len(roman_string)):
+        if roman_dict.get(roman_string[i], 0) == 0:
+            return 0
+
+        # Subtractive case
+        if (i != len(roman_string) - 1
+                and roman_dict[roman_string[i]] <
+                roman_dict[roman_string[i + 1]]):
+            num -= roman_dict[roman_string[i]]
+        else:
+            num += roman_dict[roman_string[i]]
+
+    return num
