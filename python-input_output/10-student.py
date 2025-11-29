@@ -1,22 +1,39 @@
 #!/usr/bin/python3
-"""Module defining the Student class with flexible JSON serialization.
+"""
+Module that defines a Student class with optional attribute filtering.
 """
 
 
 class Student:
-    """Defines a student by first name, last name, and age."""
+    """
+    Class that defines a student with first name, last name, and age.
+    """
 
     def __init__(self, first_name, last_name, age):
-        """Initialize a Student instance."""
+        """
+        Initialize a Student instance.
+
+        Args:
+            first_name (str): First name of the student.
+            last_name (str): Last name of the student.
+            age (int): Age of the student.
+        """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """Retrieve a dictionary representation of the Student instance.
-        
-        If attrs is a list of strings, only attributes in this list are included.
-        Otherwise, all attributes are included.
+        """
+        Return the dictionary representation of the Student instance.
+
+        If attrs is a list of strings, only attributes in this list are
+        included. Otherwise, all attributes are included.
+
+        Args:
+            attrs (list, optional): List of attribute names to include.
+
+        Returns:
+            dict: Dictionary of selected attributes.
         """
         if isinstance(attrs, list) and all(isinstance(a, str) for a in attrs):
             return {k: v for k, v in self.__dict__.items() if k in attrs}
