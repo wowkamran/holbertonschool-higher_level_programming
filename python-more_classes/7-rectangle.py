@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Module that defines a Rectangle class with instance counter and print symbol."""
+"""Module that defines a Rectangle class with instance counter
+and print symbol.
+"""
 
 
 class Rectangle:
@@ -56,7 +58,9 @@ class Rectangle:
         if self.width == 0 or self.height == 0:
             return ""
         row = str(self.print_symbol) * self.width
-        return "\n".join([row for _ in range(self.height)])
+        return "\n".join(
+            [row for _ in range(self.height)]
+        )
 
     def __repr__(self):
         """Return a string representation to recreate a new instance."""
