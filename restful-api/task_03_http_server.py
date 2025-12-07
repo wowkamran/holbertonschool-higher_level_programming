@@ -6,6 +6,7 @@ Endpoints:
 - /           : Returns a welcome text.
 - /data       : Returns a sample JSON dataset.
 - /info       : Returns API version and description as JSON.
+- /status     : Returns OK status.
 - Any other   : Returns 404 Not Found.
 """
 
@@ -36,6 +37,11 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "application/json")
             self.end_headers()
             self.wfile.write(json.dumps(info).encode("utf-8"))
+        elif self.path == "/status":
+            self.send_response(200)
+            self.send_header("Content-type", "text/plain")
+            self.end_headers()
+            self.wfile.write(b"OK")
         else:
             self.send_response(404)
             self.send_header("Content-type", "text/plain")
